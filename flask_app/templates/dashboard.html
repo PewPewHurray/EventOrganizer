@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="m-4">
+        <div class="d-flex justify-content-between mb-3">
+            <h1>Welcome, {{session.first_name}}!</h1>
+            <a href="/logout">Log Out</a>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Event Name</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Date and Time</th>
+                    <th>Coordinator</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for event in events %}
+                    <tr>
+                        <td><a href="/events/{{event.id}}">{{event.name}}</a></td>
+                        <td>{{event.address}}</td>
+                        <td>{{event.city}}</td>
+                        <td>{{event.state}}</td>
+                        <td>{{event.date_time}}</td>
+                        <td>{{event.coordinator.first_name}} {{event.coordinator.last_name}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/events/create">Create a New Event</a>
+    </div>
+</body>
+
+</html>
