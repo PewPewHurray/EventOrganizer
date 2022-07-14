@@ -24,8 +24,7 @@ def add():
 
 @app.route("/login", methods=["POST"])
 def login():
-    data = {"email": request.form["email"]}
-    user_in_db = user.User.get_by_email(data)
+    user_in_db = user.User.get_by_email({"email": request.form["email"]})
     if not user_in_db:
         flash("Invalid Email/Password", "login")
         return redirect("/")

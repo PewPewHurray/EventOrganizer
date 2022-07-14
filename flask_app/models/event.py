@@ -16,9 +16,10 @@ class Event:
         self.created_at = data["created_at"]
         self.updated_at = data["updated_at"]
         self.participants = []
+        self.participants_ids = []
 
     @classmethod
-    def create_event(cls, data):
+    def add_event(cls, data):
         query = "INSERT INTO events (name, date_time, address, city, state, coordinator, created_at, updated_at) VALUES (%(name)s, %(date_time)s, %(address)s, %(city)s, %(state)s, %(coordinator)s, NOW(), NOW());"
         return connectToMySQL(cls.db).query_db(query, data)
 
@@ -36,8 +37,37 @@ class Event:
             "updated_at": results[0]["users.updated_at"]
         }
         this_event = cls(results[0])
-        this_event.date_time = this_event.date_time.strftime("%B %d, %Y at %I:%M %p")
         this_event.coordinator = user.User(coordinator_data)
+        return this_event
+
+    @classmethod
+    def get_event_by_id_with_participants(cls, data):
+        query = "SELECT * FROM events LEFT JOIN participants ON events.id = event_id LEFT JOIN users AS participants_users ON user_id = participants_users.id LEFT JOIN users AS coordinators ON events.coordinator = coordinators.id WHERE events.id = %(id)s;"
+        results = connectToMySQL(cls.db).query_db(query, data)
+        coordinator_data = {
+            "id": results[0]["coordinator"],
+            "first_name": results[0]["coordinators.first_name"],
+            "last_name": results[0]["coordinators.last_name"],
+            "email": results[0]["coordinators.email"],
+            "password": results[0]["coordinators.password"],
+            "created_at": results[0]["coordinators.created_at"],
+            "updated_at": results[0]["coordinators.updated_at"]
+        }
+        this_event = cls(results[0])
+        this_event.coordinator = user.User(coordinator_data)
+        for row in results:
+            if row["participants_users.id"] != None:
+                participant_data={
+                "id": row["participants_users.id"],
+                "first_name": row["first_name"],
+                "last_name": row["last_name"],
+                "email": row["email"],
+                "password": row["password"],
+                "created_at": row["participants_users.created_at"],
+                "updated_at": row["participants_users.updated_at"]
+                }
+                this_event.participants_ids.append(row["participants_users.id"])
+                this_event.participants.append(user.User(participant_data))
         return this_event
 
     @classmethod
@@ -62,8 +92,23 @@ class Event:
         return events_list
 
     @classmethod
-    def edit_event(cls, data):
+    def update_event(cls, data):
         query = "UPDATE events SET name = %(name)s, date_time = %(date_time)s, address = %(address)s, city = %(city)s, state = %(state)s WHERE id = %(id)s;"
+        return connectToMySQL(cls.db).query_db(query, data)
+
+    @classmethod
+    def destroy_event(cls, data):
+        query = "DELETE FROM events WHERE id = %(id)s;"
+        return connectToMySQL(cls.db).query_db(query, data)
+
+    @classmethod
+    def add_particaipant(cls, data):
+        query = "INSERT INTO participants (event_id, user_id) VALUES (%(event_id)s, %(user_id)s);"
+        return connectToMySQL(cls.db).query_db(query, data)
+
+    @classmethod
+    def destroy_particaipant(cls, data):
+        query = "DELETE FROM participants WHERE event_id = %(event_id)s AND user_id = %(user_id)s;"
         return connectToMySQL(cls.db).query_db(query, data)
 
     @staticmethod
