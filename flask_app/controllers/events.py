@@ -57,11 +57,15 @@ def destroy_event(id):
 
 @app.route("/events/<int:id>/add_participant", methods=["POST"])
 def add_participant(id):
+    if not "id" in session:
+        return redirect("/")
     event.Event.add_particaipant(request.form)
     return redirect("/events/"+str(id))
 
 @app.route("/events/<int:id>/destroy_participant")
 def destroy_participant(id):
+    if not "id" in session:
+        return redirect("/")
     data = {
         "user_id": session["id"],
         "event_id": id
