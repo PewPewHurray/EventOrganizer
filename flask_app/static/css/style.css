@@ -1,3 +1,34 @@
-h1 {
-    color: blue;
+.nav_text {
+    color: #3F00B3;
+}
+
+.main_theme {
+    background-color: #FFFB19;
+    border: 2px solid #3F00B3;
+}
+
+.nav {
+    background-color: #FFFB19;
+    border-bottom: 2px solid #3F00B3;
+}
+
+.index_div {
+    background-color: #FFFC00;
+    border-style: solid;
+    border-color: #3F00B3;
+}
+
+.submit_btn, .error_div{
+    background-color: #3F00B3;
+    color: #FFFC00;
+    border: 2px solid #B39617;
+}
+
+.each_error {
+    border-top: 2px solid #B39617;
+    border-bottom: 2px solid #B39617;
+}
+
+.body {
+    background-color: #FFFCC2;
 }
