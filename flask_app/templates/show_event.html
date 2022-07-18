@@ -17,7 +17,7 @@
         {% block nav %} {% include "nav.html" %} {% endblock nav %}
     </div>
     <div class="d-flex justify-content-evenly mx-5">
-        <div class="index_div p-3">
+        <div class="main_theme p-3">
             <div class="row mb-3 justify-content-between">
                 <p class="fw-bold col-sm-auto">Date and Time of Event:</p>
                 <p class="fw-normal col-sm-auto">{{event.date_time}}</p>
@@ -43,7 +43,7 @@
                 <a href="/events/{{event.id}}/destroy">Delete</a>
             {% endif %}
         </div>
-        <div class="index_div p-3">
+        <div class="main_theme p-3">
             <h4 class="mb-3">Participants:</h4>
             {% for one_participant in event.participants %}
             <p>{{one_participant.first_name}} {{one_participant.last_name}}</p>

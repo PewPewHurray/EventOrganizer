@@ -13,7 +13,7 @@
 
 <body class="body">
     <div class="d-flex justify-content-evenly mt-5">
-        <div class="index_div">
+        <div class="main_theme">
             <h2 class="m-2 mb-4">Registration</h2>
             {% with messages = get_flashed_messages(category_filter=["registration"]) %}
                 {% if messages %}
@@ -28,37 +28,37 @@
                 <div class="row ms-1 mb-4 me-3">
                     <label for="first_name" class="col-sm-5 col-form-label fw-bold">First Name:</label>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control border-success" name="first_name">
+                        <input type="text" class="form-control form_inputs" name="first_name">
                     </div>
                 </div>
                 <div class="row ms-1 mb-4 me-3">
                     <label for="last_name" class="col-sm-5 col-form-label fw-bold">Last Name:</label>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control border-success" name="last_name">
+                        <input type="text" class="form-control form_inputs" name="last_name">
                     </div>
                 </div>
                 <div class="row ms-1 mb-4 me-3">
                     <label for="email" class="col-sm-5 col-form-label fw-bold">Email:</label>
                     <div class="col-sm-7">
-                        <input type="email" class="form-control border-success" name="email">
+                        <input type="email" class="form-control form_inputs" name="email">
                     </div>
                 </div>
                 <div class="row ms-1 mb-4 me-3">
                     <label for="password" class="col-sm-5 col-form-label fw-bold">Password:</label>
                     <div class="col-sm-7">
-                        <input type="password" class="form-control border-success" name="password">
+                        <input type="password" class="form-control form_inputs" name="password">
                     </div>
                 </div>
                 <div class="row ms-1 mb-4 me-3">
                     <label for="confirm_password" class="col-sm-5 col-form-label fw-bold">Confirm Password:</label>
                     <div class="col-sm-7">
-                        <input type="password" class="form-control border-success" name="confirm_password">
+                        <input type="password" class="form-control form_inputs" name="confirm_password">
                     </div>
                 </div>
                 <input class="btn submit_btn my-3 ms-3" type="submit" value="Register">
             </form>
         </div>
-        <div class="index_div">
+        <div class="main_theme">
             <h2 class="m-2 mb-4">Login</h2>
             {% with messages = get_flashed_messages(category_filter=["login"]) %}
                 {% if messages %}
@@ -73,13 +73,13 @@
                 <div class="row ms-1 mb-4">
                     <label for="email" class="col-sm-4 col-form-label fw-bold">Email:</label>
                     <div class="col-sm-7">
-                        <input type="email" class="form-control border-success" name="email">
+                        <input type="email" class="form-control form_inputs" name="email">
                     </div>
                 </div>
                 <div class="row ms-1 mb-4">
                     <label for="password" class="col-sm-4 col-form-label fw-bold">Password:</label>
                     <div class="col-sm-7 me-4">
-                        <input type="password" class="form-control me-5 border-success" name="password">
+                        <input type="password" class="form-control me-5 form_inputs" name="password">
                     </div>
                 </div>
                 <input class="btn submit_btn my-3 ms-3" type="submit" value="Login">

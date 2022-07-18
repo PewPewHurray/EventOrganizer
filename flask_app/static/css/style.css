@@ -12,12 +12,6 @@
     border-bottom: 2px solid #3F00B3;
 }
 
-.index_div {
-    background-color: #FFFC00;
-    border-style: solid;
-    border-color: #3F00B3;
-}
-
 .submit_btn, .error_div{
     background-color: #3F00B3;
     color: #FFFC00;
@@ -31,4 +25,9 @@
 
 .body {
     background-color: #FFFCC2;
+}
+
+.form_inputs {
+    background-color: #FFFCC2;
+    border: 1px solid #3F00B3;
 }
